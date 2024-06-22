@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Footer = () => {
+const Add = () => {
   return (
     <div>
-      lwfw
+      kskfewkfwkekfwekf
     </div>
   )
 }
 
-export default Footer
+export default Add
