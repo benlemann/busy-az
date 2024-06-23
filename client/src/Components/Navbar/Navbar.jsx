@@ -74,6 +74,7 @@ export default function Navbar() {
                     <NavLink to="/blog">blog</NavLink>
                     <NavLink to="/login">login</NavLink>
                     <NavLink to="/signup">sign up</NavLink>
+                    <NavLink to="/jobseekers">Job</NavLink>
                   </div>
                 </div>
               </div>
