@@ -6,4 +6,10 @@ const createTokenForLogin = (userId) => {
     });
 };
 
-module.exports = { createTokenForLogin };
+const createTokenForAnnouncement = (userId) => {
+    return jwt.sign({ userId }, process.env.JWT_SECRET, {
+        expiresIn: "1h"
+    });
+};
+
+module.exports = { createTokenForLogin, createTokenForAnnouncement };

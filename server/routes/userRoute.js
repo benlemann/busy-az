@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const {
     createUser,
-    loginUser
+    loginUser,
+    logOutUser
 } = require("../controllers/userController");
 
 router.route("/signup")
@@ -10,5 +11,8 @@ router.route("/signup")
 
 router.route("/login")
     .post(loginUser);
+
+router.route("/logout")
+    .get(logOutUser);
 
 module.exports = { router };

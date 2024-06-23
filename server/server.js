@@ -22,5 +22,7 @@ app.use(methodOverride("_method", {
 }));
 
 const userRoute = require("./routes/userRoute").router;
+const announcementRoute = require("./routes/announcementRoute").router;
 
 app.use("/api/user", userRoute);
+app.use("/api/announcement", announcementRoute);

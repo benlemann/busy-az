@@ -4,7 +4,7 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 
 const userSchema = new Schema({
-    userRole: {
+    userrole: {
         type: String,
         enum: ["employer", "freelancer"],
         required: true
@@ -25,6 +25,7 @@ const userSchema = new Schema({
     phone: {
         type: String,
         required: true,
+        unique: true,
         validate: {
             validator: function(value) {
                 return validator.isMobilePhone(value, 'az-AZ');

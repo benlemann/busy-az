@@ -1,4 +1,6 @@
-const { User } = require("../models/userModel")
+const { User } = require("../models/userModel");
+const bcrypt = require("bcryptjs");
+const { createTokenForLogin } = require("../token/createToken");
 
 const createUser = async (req, res) => {
     try {
@@ -83,7 +85,7 @@ const loginUser = async (req, res) => {
             httpOnly: true
         });
 
-        res.status(200).json({success: true});
+        res.status(200).json({ success: true });
 
     } else {
         res.status(400).json({
@@ -93,7 +95,13 @@ const loginUser = async (req, res) => {
     };
 };
 
+const logOutUser = (req, res) => {
+    res.clearCookie("jwt");
+    res.status(200).json({ success: true });
+};
+
 module.exports = {
     createUser,
-    loginUser
+    loginUser,
+    logOutUser
 };
