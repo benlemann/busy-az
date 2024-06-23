@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import styles from './Login.module.css';
 import { CiMail } from "react-icons/ci";
 import { CiLock } from "react-icons/ci";
+import { NavLink } from 'react-router-dom';
 const initialValues = {
     email: "",
     password: "",
@@ -54,7 +55,7 @@ const Login = () => {
                 <h1 className={styles.title}>Daxil ol</h1>
                 <div className={styles.subtitle}>
                     <h3 className={styles.subtitletext}>Səni saytımızda görmək xoşdur.</h3>
-                    <p><span>Hesabın yoxdur?</span> <span className={styles.signup}> Qeydiyyatdan keç!</span></p>
+                    <p><span>Hesabın yoxdur?</span> <span className={styles.signup}>  <NavLink to="/signup">Qeydiyyatdan keç!</NavLink> </span></p>
                 </div>
             </div>
 

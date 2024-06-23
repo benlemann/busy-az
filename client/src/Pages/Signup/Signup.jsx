@@ -7,6 +7,8 @@ import { CiMail } from "react-icons/ci";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { LuPhone } from "react-icons/lu";
 import { CiLock } from "react-icons/ci";
+import { PiBagFill } from "react-icons/pi";
+import { NavLink } from 'react-router-dom';
 const initialValues = {
   name: "",
   email: "",
@@ -59,7 +61,7 @@ const Signup = () => {
         <h1 className={styles.title}>Qeydiyyatdan keç</h1>
         <div className={styles.subtitle}>
           <h3 className={styles.subtitletext}>gəl yeni hesab yaradaq!</h3>
-          <p><span>Artıq hesabı yaratmısan?</span> <span className={styles.signup}> Daxil ol!</span></p>
+          <p><span>Artıq hesabı yaratmısan?</span> <span className={styles.signup}>  <NavLink to="/login">Daxil ol!</NavLink> </span></p>
         </div>
       </div>
       <Formik
@@ -71,12 +73,12 @@ const Signup = () => {
           <Form className={styles.form}>
             <div className={styles.radioinps}>
               <label className={styles.radioLabel}>
-                <Field type="radio" name="picked" value="One" className={styles.radioInput} />
-                <span className={styles.radioLabel}>   <IoPersonCircleOutline />İşaxtaran</span>
+                <Field type="radio" name="userrole" value="freelancer" className={styles.radioInput} />
+                <span className={styles.radioLabel}>   <IoPersonCircleOutline className={styles.icon} />İşaxtaran</span>
               </label>
               <label className={styles.radioLabel}>
-                <Field type="radio" name="picked" value="Two" className={styles.radioInput} />
-                <span className={styles.radioLabel}>İşəgötürən</span>
+                <Field type="radio" name="userrole" value="employer" className={styles.radioInput} />
+                <span className={styles.radioLabel}><PiBagFill className={styles.icon} />İşəgötürən</span>
               </label>
             </div>
             <div className={styles.inpbox}>
@@ -112,8 +114,8 @@ const Signup = () => {
             </div>
             {errors.password && <small className={styles.error}>{errors.password}</small>}
 
-            <br /><br />
-            <button className={styles.submitBtn} type='submit' disabled={isSubmitting || isPosting}>Submit</button>
+            <br />
+            <button className={styles.submitBtn} type='submit' disabled={isSubmitting || isPosting}>Qeydiyyatdan keç</button>
           </Form>
         )}
       </Formik>
