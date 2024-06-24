@@ -5,7 +5,9 @@ const Validation = Yup.object({
   email: Yup.string().email("Please Enter Valid Email").required("Please Enter Email"),
   password: Yup.string().min(5).required("Please Enter Password"),
   phone: Yup.string().min(13).required("Please Enter Number"),
-  role: Yup.string().required('Required'),
+  userrole: Yup.string().required('Rol seçimi gerekli'),
 });
 
 export default Validation;
+
+

@@ -14,7 +14,8 @@ const initialValues = {
   name: "",
   email: "",
   password: "",
-  phone: ""
+  phone: "",
+  userrole: ""
 };
 
 const Signup = () => {
@@ -24,15 +25,10 @@ const Signup = () => {
     console.log(values);
     try {
       setIsPosting(true);
-
-      const userWithEmail = users.find(user => user.email === values.email);
-      if (userWithEmail) {
-        alert("This email is already in use!");
-      } else {
-        await axios.post("https://localhost:7999/api/user/signup", values);
-        alert("Registration successful!");
-        actions.resetForm();
-      }
+      const response = await axios.post("https://localhost:7999/api/user/signup", values);
+      console.log('Response:', response.data);
+      alert("Registration successful!");
+      actions.resetForm();
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while registering. Please try again later.");
@@ -68,6 +64,7 @@ const Signup = () => {
                 <span className={styles.radioLabel}><PiBagFill className={styles.icon} />İşəgötürən</span>
               </label>
             </div>
+            {errors.userrole && <small className={styles.error}>{errors.userrole}</small>}
             <div className={styles.inpbox}>
               <div className={styles.iconbox}>
                 <IoPersonCircleOutline />
@@ -86,7 +83,7 @@ const Signup = () => {
               <div className={styles.iconbox}>
                 <LuPhone />
               </div>
-              <Field className={styles.inp} type="number" name="phone" placeholder="Telefon" />
+              <Field className={styles.inp} type="text" name="phone" placeholder="Telefon" />
             </div>
             {errors.phone && <small className={styles.error}>{errors.phone}</small>}
             <div className={styles.inpbox}>
