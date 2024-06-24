@@ -8,22 +8,33 @@ import Signup from './Pages/Signup/Signup'
 import Jobseekers from "./Pages/Jobseekers/Jobseekers"
 import Userdetail from './Pages/Jobseekers/Userdetail'
 import NotFound from './Pages/Notfound/NotFound'
-const App = () => {
-  return (
-    <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/signup" element={<Signup/>} />
-        <Route path="/signup" element={<Jobseekers/>} />
-        <Route path="jobseekers/users/:id" element={<Userdetail/>} />
-        <Route path="*" element={<NotFound/>} />
-      </Routes>
-    </>
-  
-  )
-}
+import Footer from './Components/Footer/Footer'
+import Settings from './Pages/Userpages/Settings'
+import Bookmarks from './Pages/Userpages/Bookmarks'
+import Information from './Pages/Userpages/Information'
+import Profile from './Pages/Userpages/Profile'
+
+const App = () => (
+  <>
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/jobseekers" element={<Jobseekers />} />
+      <Route path="jobseekers/users/:id" element={<Userdetail />} />
+      <Route path="*" element={<NotFound />} />
+
+      <Route path="/dashboard/profile" element={<Profile/>}>
+        <Route path="" element={<Information/>} />
+        <Route path="bookmarks" element={<Bookmarks/>} />
+        <Route path="settings" element={<Settings/>} />
+      </Route>
+    </Routes>
+    <Footer />
+  </>
+
+)
 
 export default App

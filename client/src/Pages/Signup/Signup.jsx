@@ -9,6 +9,7 @@ import { LuPhone } from "react-icons/lu";
 import { CiLock } from "react-icons/ci";
 import { PiBagFill } from "react-icons/pi";
 import { NavLink } from 'react-router-dom';
+
 const initialValues = {
   name: "",
   email: "",
@@ -42,7 +43,7 @@ const Signup = () => {
       if (userWithEmail) {
         alert("This email is already in use!");
       } else {
-        await axios.post("https://6569b50bde53105b0dd78115.mockapi.io/users", values);
+        await axios.post("https://localhost:7999/api/user/signup", values);
         alert("Registration successful!");
         actions.resetForm();
       }
@@ -113,10 +114,10 @@ const Signup = () => {
 
             </div>
             {errors.password && <small className={styles.error}>{errors.password}</small>}
-
             <br />
             <button className={styles.submitBtn} type='submit' disabled={isSubmitting || isPosting}>Qeydiyyatdan keç</button>
           </Form>
+
         )}
       </Formik>
     </div>
