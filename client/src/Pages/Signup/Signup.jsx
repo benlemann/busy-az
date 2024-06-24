@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import Validation from './Validation';
@@ -14,28 +14,14 @@ const initialValues = {
   name: "",
   email: "",
   password: "",
-  phone: "",
-  role: ""
+  phone: ""
 };
 
 const Signup = () => {
-  const [users, setUsers] = useState([]);
   const [isPosting, setIsPosting] = useState(false);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get("https://6569b50bde53105b0dd78115.mockapi.io/users");
-        setUsers(response.data);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    }
-
-    fetchUsers();
-  }, [isPosting]);
-
   const handleSubmit = async (values, actions) => {
+    console.log(values);
     try {
       setIsPosting(true);
 
@@ -44,22 +30,6 @@ const Signup = () => {
         alert("This email is already in use!");
       } else {
         await axios.post("https://localhost:7999/api/user/signup", values);
-        /**
-         {
-            success: true   adam logine getsin
-        }
-
-
-        {
-            success: false,   adama errorlario bildir
-            errors
-
-          errors: {
-            name: "djashduhasuhuhasuhduashud",
-            password: "fdsnfhdsufusdfu"
-          }
-        }
-         */
         alert("Registration successful!");
         actions.resetForm();
       }
@@ -103,7 +73,6 @@ const Signup = () => {
                 <IoPersonCircleOutline />
               </div>
               <Field className={styles.inp} type="text" name="name" placeholder="ad" />
-
             </div>
             {errors.name && <small className={styles.error}>{errors.name}</small>}
             <div className={styles.inpbox}>
@@ -111,7 +80,6 @@ const Signup = () => {
                 <CiMail />
               </div>
               <Field className={styles.inp} type="email" name="email" placeholder="e-poçt" />
-
             </div>
             {errors.email && <small className={styles.error}>{errors.email}</small>}
             <div className={styles.inpbox}>
@@ -119,7 +87,6 @@ const Signup = () => {
                 <LuPhone />
               </div>
               <Field className={styles.inp} type="number" name="phone" placeholder="Telefon" />
-
             </div>
             {errors.phone && <small className={styles.error}>{errors.phone}</small>}
             <div className={styles.inpbox}>
@@ -127,13 +94,11 @@ const Signup = () => {
                 <CiLock />
               </div>
               <Field className={styles.inp} type="password" name="password" placeholder="parol" />
-
             </div>
             {errors.password && <small className={styles.error}>{errors.password}</small>}
             <br />
             <button className={styles.submitBtn} type='submit' disabled={isSubmitting || isPosting}>Qeydiyyatdan keç</button>
           </Form>
-
         )}
       </Formik>
     </div>
