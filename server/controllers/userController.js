@@ -32,7 +32,7 @@ const createUser = async (req, res) => {
             };
 
             if (err.keyPattern.phone) {
-                errors.email = "Bu telefon nömrəsi artıq istifadə olunub";
+                errors.phone = "Bu telefon nömrəsi artıq istifadə olunub";
             };
         };
 
@@ -85,7 +85,10 @@ const loginUser = async (req, res) => {
             httpOnly: true
         });
 
-        res.status(200).json({ success: true });
+        res.status(200).json({
+            success: true,
+            userrole: user.userrole
+        });
 
     } else {
         res.status(400).json({

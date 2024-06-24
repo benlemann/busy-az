@@ -1,10 +1,16 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`server is listening on port ${port}`);
 });
+
+const corsOptions = {
+    origin: "http://localhost:3000/",
+    credentials: true
+};
 
 const { connection } = require("./db");
 connection();

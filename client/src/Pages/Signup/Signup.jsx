@@ -44,6 +44,22 @@ const Signup = () => {
         alert("This email is already in use!");
       } else {
         await axios.post("https://localhost:7999/api/user/signup", values);
+        /**
+         {
+            success: true   adam logine getsin
+        }
+
+
+        {
+            success: false,   adama errorlario bildir
+            errors
+
+          errors: {
+            name: "djashduhasuhuhasuhduashud",
+            password: "fdsnfhdsufusdfu"
+          }
+        }
+         */
         alert("Registration successful!");
         actions.resetForm();
       }
