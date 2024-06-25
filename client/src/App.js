@@ -26,7 +26,7 @@ const App = () => (
       <Route path="jobseekers/users/:id" element={<Userdetail />} />
       <Route path="*" element={<NotFound />} />
 
-      <Route path="/dashboard/profile" element={<Profile/>}>
+      <Route path="/dashboard/profile/freelancer" element={<Profile/>}>
         <Route path="" element={<Information/>} />
         <Route path="bookmarks" element={<Bookmarks/>} />
         <Route path="settings" element={<Settings/>} />

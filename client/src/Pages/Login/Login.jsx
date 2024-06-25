@@ -1,12 +1,11 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import axios from 'axios';
 import * as Yup from 'yup';
 import styles from './Login.module.css';
 import { CiMail } from "react-icons/ci";
 import { CiLock } from "react-icons/ci";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+
 const initialValues = {
     email: "",
     password: "",
@@ -14,6 +13,7 @@ const initialValues = {
 
 const Login = () => {
     const [isPosting, setIsPosting] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (values, actions) => {
         console.log(values);
@@ -29,23 +29,25 @@ const Login = () => {
             });
             const response = await res.json();
 
-            console.log(response)
+            console.log(response);
 
             if (response.success) {
                 if (response.userrole === "freelancer") {
-
+                    navigate('/dashboard/profile/freelancer');
                 } else if (response.userrole === "employer") {
-
-                };
-                // login
+                    navigate('/dashboard/profile/employer');
+                }
             } else {
-                // errorlari bildir
-                // response.errors {
-                //               email: "d,asidhiasdihasidhisadjisaji"
-                // }
+                // Genel hata mesajı ekleyin
+                actions.setErrors({ general: response.message });
+                // Belirli alanlar için hata mesajları ekleyin
+                Object.keys(response.errors).forEach((key) => {
+                    actions.setFieldError(key, response.errors[key]);
+                });
             }
         } catch (error) {
             console.error("Error:", error);
+            actions.setErrors({ general: "An error occurred. Please try again later." });
         } finally {
             setIsPosting(false);
             actions.setSubmitting(false);
@@ -72,14 +74,13 @@ const Login = () => {
             >
                 {({ errors, isSubmitting }) => (
                     <Form className={styles.form}>
+                        {errors.general && <div className={styles.error}>{errors.general}</div>}
                         <div className={styles.inpbox}>
                             <div className={styles.iconbox}>
                                 <CiMail />
                             </div>
                             <Field className={styles.inp} type="email" name="email" placeholder="e-poçt ünvanı" />
-
                         </div>
-
                         {errors.email && <small className={styles.error}>{errors.email}</small>}
                         <br />
                         <div className={styles.inpbox}>
@@ -88,11 +89,9 @@ const Login = () => {
                             </div>
                             <Field className={styles.inp} type="password" placeholder="parol" name="password" />
                         </div>
-
                         {errors.password && <small className={styles.error}>{errors.password}</small>}
                         <div>
                             <span className={styles.forgetpsw}>Parolun yaddan çıxıb?</span>
-
                         </div>
                         <br />
                         <button className={styles.submitBtn} type='submit' disabled={isSubmitting || isPosting}>Daxil ol</button>
