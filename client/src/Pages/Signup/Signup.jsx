@@ -26,6 +26,7 @@ const Signup = () => {
       setIsPosting(true);
       const res = await fetch("http://localhost:7999/api/user/signup", {
         method: 'POST',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json'
         },
@@ -40,7 +41,7 @@ const Signup = () => {
           // response.errors {
 //               email: "d,asidhiasdihasidhisadjisaji"
           // }
-      }
+      };
     } catch (error) {
       console.error("Error:", error);
     } finally {

@@ -11,11 +11,7 @@ const createUser = async (req, res) => {
                 return res.status(400).json({ success: false });
             };
         });
-        console.log(req.body)
-
-        console.log(123)
         const user = await User.create(req.body);
-        console.log(456)
 
         res.status(201).json({
             success: true
@@ -39,8 +35,6 @@ const createUser = async (req, res) => {
             };
         };
 
-        console.log(errors)
-
         res.status(201).json({
             success: false,
             errors
@@ -49,6 +43,12 @@ const createUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
+    if (req.cookies.jwt) {
+        console.log(req.cookies.jwt);
+    } else {
+        console.log("bro sen malsan")
+    };
+
     const keys = ["email", "password"];
 
     Object.keys(req.body).forEach(key => {

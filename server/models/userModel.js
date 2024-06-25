@@ -6,8 +6,17 @@ const bcrypt = require("bcryptjs");
 const userSchema = new Schema({
     userrole: {
         type: String,
-        enum: ["employer", "freelancer"],
-        required: true
+        required: true,
+        validate: [
+            (value) => {
+                if (value === "employer" || value === "freelancer"){
+                    return true;
+                };
+                return false;
+            },
+
+            "userrole düzgün deyil"
+        ]
     },
 
     name: {

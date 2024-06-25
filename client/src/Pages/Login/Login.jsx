@@ -19,8 +19,9 @@ const Login = () => {
         console.log(values);
         try {
             setIsPosting(true);
-            const res = await fetch("https://664f2fb5fafad45dfae2b770.mockapi.io/product", {
+            const res = await fetch("http://localhost:7999/api/user/login", {
                 method: 'POST',
+                credentials: "include",
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -28,7 +29,14 @@ const Login = () => {
             });
             const response = await res.json();
 
+            console.log(response)
+
             if (response.success) {
+                if (response.userrole === "freelancer") {
+
+                } else if (response.userrole === "employer") {
+
+                };
                 // login
             } else {
                 // errorlari bildir
