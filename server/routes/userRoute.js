@@ -5,6 +5,8 @@ const {
     loginUser,
     logOutUser
 } = require("../controllers/userController");
+const { authenticateToken } = require("../middlewares/authMiddleWare");
+
 
 router.route("/signup")
     .post(createUser);

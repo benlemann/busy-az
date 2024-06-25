@@ -7,7 +7,7 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 import { LuPhone } from "react-icons/lu";
 import { CiLock } from "react-icons/ci";
 import { PiBagFill } from "react-icons/pi";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const initialValues = {
   name: "",
@@ -19,6 +19,7 @@ const initialValues = {
 
 const Signup = () => {
   const [isPosting, setIsPosting] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (values, actions) => {
     console.log(values);
@@ -35,12 +36,12 @@ const Signup = () => {
       const response = await res.json();
 
       if (response.success) {
-          // login
+        navigate('/login');
       } else {
-          // errorlari bildir
-          // response.errors {
-//               email: "d,asidhiasdihasidhisadjisaji"
-          // }
+        // errorlari bildir
+        // response.errors {
+        //               email: "d,asidhiasdihasidhisadjisaji"
+        // }
       };
     } catch (error) {
       console.error("Error:", error);

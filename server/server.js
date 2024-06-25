@@ -29,6 +29,7 @@ app.use(methodOverride("_method", {
 const { requestNotify } = require("./middlewares/notify")
 
 const userRoute = require("./routes/userRoute").router;
+const checkRoute = require("./routes/checkRoute").router;
 const announcementRoute = require("./routes/announcementRoute").router;
 
 app.post("/aaa", (req, res) => {
@@ -37,4 +38,5 @@ app.post("/aaa", (req, res) => {
 })
 
 app.use("/api/user", requestNotify, userRoute);
+app.use("/api/check", requestNotify, checkRoute);
 app.use("/api/announcement", requestNotify, announcementRoute);

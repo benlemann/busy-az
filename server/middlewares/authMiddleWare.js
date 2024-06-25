@@ -9,7 +9,7 @@ const authenticateToken = async (req, res, next) => {
             if (err) return res.status(400).json({
                 success: false,
                 message: "UserNotFound"
-            });;
+            });
 
             const user = await User.findById(decoded.userId).select("-password");
 
