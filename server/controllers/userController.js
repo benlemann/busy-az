@@ -103,6 +103,13 @@ const loginUser = async (req, res) => {
     };
 };
 
+const getUser = (req, res) => {
+    res.status(200).json({
+        success: true,
+        user: req.user
+    });
+};
+
 const logOutUser = (req, res) => {
     res.clearCookie("jwt");
     res.status(200).json({ success: true });
@@ -111,5 +118,6 @@ const logOutUser = (req, res) => {
 module.exports = {
     createUser,
     loginUser,
+    getUser,
     logOutUser
 };
