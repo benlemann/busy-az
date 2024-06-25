@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import axios from 'axios';
 import Validation from './Validation';
 import styles from './Signup.module.css';
 import { CiMail } from "react-icons/ci";
@@ -25,13 +24,25 @@ const Signup = () => {
     console.log(values);
     try {
       setIsPosting(true);
-      const response = await axios.post("https://localhost:7999/api/user/signup", values);
-      console.log('Response:', response.data);
-      alert("Registration successful!");
-      actions.resetForm();
+      const res = await fetch("http://localhost:7999/api/user/signup", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+      const response = await res.json();
+
+      if (response.success) {
+          // login
+      } else {
+          // errorlari bildir
+          // response.errors {
+//               email: "d,asidhiasdihasidhisadjisaji"
+          // }
+      }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred while registering. Please try again later.");
     } finally {
       setIsPosting(false);
       actions.setSubmitting(false);

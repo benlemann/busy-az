@@ -24,14 +24,8 @@ const userSchema = new Schema({
 
     phone: {
         type: String,
-        required: true,
-        unique: true,
-        validate: {
-            validator: function(value) {
-                return validator.isMobilePhone(value, 'az-AZ');
-            },
-            message: props => "Telefon nömrəsi düzgün deyil"
-        }
+        required: [true, "Phone hissəsi məcburidir"],
+        unique: true
     },
 
     password: {

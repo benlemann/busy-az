@@ -11,8 +11,11 @@ const createUser = async (req, res) => {
                 return res.status(400).json({ success: false });
             };
         });
+        console.log(req.body)
 
+        console.log(123)
         const user = await User.create(req.body);
+        console.log(456)
 
         res.status(201).json({
             success: true
@@ -35,6 +38,8 @@ const createUser = async (req, res) => {
                 errors.phone = "Bu telefon nömrəsi artıq istifadə olunub";
             };
         };
+
+        console.log(errors)
 
         res.status(201).json({
             success: false,

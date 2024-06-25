@@ -6,11 +6,10 @@ const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`server is listening on port ${port}`);
 });
-
-const corsOptions = {
-    origin: "http://localhost:3000/",
+app.use(cors({
+    origin: "http://localhost:3000",
     credentials: true
-};
+}));
 
 const { connection } = require("./db");
 connection();
@@ -27,8 +26,15 @@ app.use(methodOverride("_method", {
     methods: ["POST", "GET"]
 }));
 
+const { requestNotify } = require("./middlewares/notify")
+
 const userRoute = require("./routes/userRoute").router;
 const announcementRoute = require("./routes/announcementRoute").router;
 
-app.use("/api/user", userRoute);
-app.use("/api/announcement", announcementRoute);
+app.post("/aaa", (req, res) => {
+    console.log(req)
+    res.send(true)
+})
+
+app.use("/api/user", requestNotify, userRoute);
+app.use("/api/announcement", requestNotify, announcementRoute);
