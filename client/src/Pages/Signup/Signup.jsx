@@ -19,8 +19,7 @@ const initialValues = {
 
 const Signup = () => {
   const [isPosting, setIsPosting] = useState(false);
-  const navigate = useNavigate();
-
+  const navigate =  useNavigate()
   const handleSubmit = async (values, actions) => {
     console.log(values);
     try {
