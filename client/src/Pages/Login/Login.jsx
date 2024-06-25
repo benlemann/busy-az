@@ -13,36 +13,31 @@ const initialValues = {
 };
 
 const Login = () => {
-    const [users, setUsers] = useState([]);
     const [isPosting, setIsPosting] = useState(false);
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                const response = await axios.get("https://6569b50bde53105b0dd78115.mockapi.io/users");
-                setUsers(response.data);
-            } catch (error) {
-                console.error("Error fetching users:", error);
-            }
-        };
-
-        fetchUsers();
-    }, [isPosting]);
-
     const handleSubmit = async (values, actions) => {
+        console.log(values);
         try {
             setIsPosting(true);
+            const res = await fetch("https://664f2fb5fafad45dfae2b770.mockapi.io/product", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(values)
+            });
+            const response = await res.json();
 
-            const user = users.find(user => user.email === values.email && user.password === values.password);
-            if (user) {
-                alert("Giriş yapıldı!");
-                actions.resetForm();
+            if (response.success) {
+                // login
             } else {
-                alert("Email or password is incorrect!");
+                // errorlari bildir
+                // response.errors {
+                //               email: "d,asidhiasdihasidhisadjisaji"
+                // }
             }
         } catch (error) {
             console.error("Error:", error);
-            alert("An error occurred while logging in. Please try again later.");
         } finally {
             setIsPosting(false);
             actions.setSubmitting(false);
@@ -81,14 +76,14 @@ const Login = () => {
                         <br />
                         <div className={styles.inpbox}>
                             <div className={styles.iconbox}>
-                            <CiLock />  
+                                <CiLock />
                             </div>
                             <Field className={styles.inp} type="password" placeholder="parol" name="password" />
                         </div>
 
                         {errors.password && <small className={styles.error}>{errors.password}</small>}
                         <div>
-                        <span className={styles.forgetpsw}>Parolun yaddan çıxıb?</span>
+                            <span className={styles.forgetpsw}>Parolun yaddan çıxıb?</span>
 
                         </div>
                         <br />
