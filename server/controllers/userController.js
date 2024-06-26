@@ -43,12 +43,6 @@ const createUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-    if (req.cookies.jwt) {
-        console.log(req.cookies.jwt);
-    } else {
-        console.log("bro sen malsan")
-    };
-
     const keys = ["email", "password"];
 
     Object.keys(req.body).forEach(key => {
@@ -99,8 +93,95 @@ const loginUser = async (req, res) => {
         res.status(400).json({
             success: false,
             errors: { password: "Parol yanlışdır" }
-        });;
+        });
     };
+};
+
+const updateUser = async (req, res) => {
+    const keys = ["name", "email", "phone", "currentpassword", "newpassword1", "newpassword2"];
+
+    Object.keys(req.body).forEach(key => {
+        if (!keys.includes(key)) {
+            return res.status(400).json({ success: false });
+        };
+    });
+
+    let errors = new Object();
+
+    const { name, email, phone, currentpassword, newpassword1, newpassword2 } = req.body;
+
+    const user = await User.findById(req.user._id);
+
+    if (user.name !== name || user.email !== email || user.phone !== phone || (currentpassword || newpassword1 || newpassword2)) {
+
+        if (!Boolean(name)) {
+            errors.name = "Ad hissəsi məcburidir";
+        };
+
+        if (!Boolean(email)) {
+            errors.email = "E-poçt hissəsi məcburidir";
+        };
+
+        if (!Boolean(phone)) {
+            errors.phone = "Phone hissəsi məcburidir";
+        };
+
+        if (currentpassword || newpassword1 || newpassword2) {
+            if (!currentpassword) {
+                errors.currentpassword = "Mövcud parol hissəsi məcburidir";
+            } else if (!await bcrypt.compare(currentpassword, user.password)) {
+                errors.currentpassword = "Mövcud parol düzgün deyil";
+            } else {
+                if (!Boolean(newpassword1)) {
+                    errors.newpassword1 = "Yeni parol hissəsi məcburidir";
+                } else if (!Boolean(newpassword2)) {
+                    errors.newpassword2 = "Yeni parolun təkrar hissəsi məcburidir";
+                } else if (newpassword1 !== newpassword2) {
+                    errors.newpassword2 = "Yeni parolun təkrarı düzgün deyil";
+                };
+            };
+        };
+
+        if (Object.keys(errors).length > 0) {
+            return res.status(400).json({
+                success: false,
+                errors
+            });
+        };
+
+        try {
+            user.name = name;
+            user.email = email;
+            user.phone = phone;
+            user.password = newpassword1;
+            await user.save();
+
+            return res.status(200).json({ success: true });
+        } catch (err) {
+            if (err.name === "ValidationError") {
+                Object.keys(err.errors).forEach(key => {
+                    errors[key] = err.errors[key].message;
+                });
+            };
+
+            if (err.name === "MongoServerError" && err.code === 11000) {
+                if (err.keyPattern.email) {
+                    errors.email = "Bu e-poçt artıq istifadə olunub";
+                };
+
+                if (err.keyPattern.phone) {
+                    errors.phone = "Bu telefon nömrəsi artıq istifadə olunub";
+                };
+            };
+
+            return res.status(201).json({
+                success: false,
+                errors
+            });
+        };
+    };
+
+    res.status(200).json({ success: true });
 };
 
 const getUser = (req, res) => {
@@ -118,6 +199,7 @@ const logOutUser = (req, res) => {
 module.exports = {
     createUser,
     loginUser,
+    updateUser,
     getUser,
     logOutUser
 };

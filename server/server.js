@@ -30,13 +30,13 @@ const { requestNotify } = require("./middlewares/notify")
 
 const userRoute = require("./routes/userRoute").router;
 const checkRoute = require("./routes/checkRoute").router;
-const announcementRoute = require("./routes/announcementRoute").router;
+const vacancyRoute = require("./routes/vacancyRoute").router;
 
-app.post("/aaa", (req, res) => {
-    console.log(req)
-    res.send(true)
+app.use("*", (req, res, next) => {
+    console.log(req.url);
+    next();
 })
 
 app.use("/api/user", requestNotify, userRoute);
 app.use("/api/check", requestNotify, checkRoute);
-app.use("/api/announcement", requestNotify, announcementRoute);
+app.use("/api/vacancy", requestNotify, vacancyRoute);

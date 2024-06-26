@@ -3,6 +3,7 @@ const router = express.Router();
 const {
     createUser,
     loginUser,
+    updateUser,
     getUser,
     logOutUser
 } = require("../controllers/userController");
@@ -14,6 +15,9 @@ router.route("/signup")
 
 router.route("/login")
     .post(loginUser);
+
+router.route("/update")
+    .put(authenticateToken, updateUser);
 
 router.route("/")
     .get(authenticateToken, getUser);

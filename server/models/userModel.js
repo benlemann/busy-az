@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
+const { ObjectId } = require("mongodb");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 
@@ -9,7 +10,7 @@ const userSchema = new Schema({
         required: true,
         validate: [
             (value) => {
-                if (value === "employer" || value === "freelancer"){
+                if (value === "employer" || value === "freelancer") {
                     return true;
                 };
                 return false;
@@ -41,7 +42,14 @@ const userSchema = new Schema({
         type: String,
         required: [true, "Parol hissəsi məcburidir"],
         minLength: [8, "Parol ən azı 8 simvoldan ibarət olmalıdır"],
-    }
+    },
+
+    looks: [
+        {
+            type: ObjectId,
+            ref: "Vacancy"
+        }
+    ]
 },
     {
         timestamps: true
