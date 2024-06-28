@@ -26,14 +26,14 @@ const Sidebar = () => {
   return (
     <div className="md:w-72 w-20 h-full bg-slate-200 ">
       <div className="py-4">
-        <h1 className="text-blue-600 font-bold text-xl md:ml-8 ml-2 mb-2 ">
+        {/* <h1 className="text-blue-600 font-bold text-xl md:ml-8 ml-2 mb-2 ">
           Profil
-        </h1>
-        <Sidebarelement
+        </h1> */}
+        {/* <Sidebarelement
           icon={<IoPeopleSharp size={16} />}
-          text="İş yeri məlumatları"
+          text=""
           to="/dashboard/employer/profile/"
-        />
+        /> */}
       </div>
       <div className="py-4">
         <h1 className="text-blue-600 font-bold text-xl md:ml-8 ml-2 mb-2 ">
@@ -47,7 +47,7 @@ const Sidebar = () => {
         <Sidebarelement
           icon={<PiCardsThree  size={16} />}
           text="Elanlarım"
-          to="emlposts"
+          to=""
         />
       </div>
 
