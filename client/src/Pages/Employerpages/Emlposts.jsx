@@ -1,39 +1,87 @@
-// import React, { useState, useEffect } from "react";
+// // import React from "react";
+// // import EBookmarkcard from "../../Components/Employerpagecomponents/Bookmarkcard";
+
+// // const Emlposts = () => {
+// //   const myvacancies = [
+// //     {
+// //       id: 1,
+// //       title: "Yük maşını atego sürücüsü",
+// //       time: " 22 saat əvvəl",
+// //     },
+// //     {
+// //       id: 2,
+// //       title: "Uçuşların təhlükəsizliyi və Keyfiyyətə Nəzarət üzrə Mütəxəssis (Lənkəran BHL)",
+// //       time: " 22 saat əvvəl",
+// //     },
+// //   ];
+
+// //   return (
+// //     <div className="flex justify-center w-full">
+// //       <div className="w-11/12">
+// //         <h1 className="py-10 text-2xl font-normal">Elanlarım</h1>
+// //         <div className="w-full shadow-custom mb-10">
+// //           {
+// //            myvacancies?.map((item) => {
+// //              return <EBookmarkcard key={item.id} item={item} />
+// //             })
+// //           }
+// //         </div>
+// //       </div>
+// //     </div>
+// //   );
+// // };
+
+// // export default Emlposts;
+
+
+
+// import React, { useEffect, useState } from "react";
 // import EBookmarkcard from "../../Components/Employerpagecomponents/Bookmarkcard";
 
 // const Emlposts = () => {
-//   const [marks, setMarks] = useState([]);
+//   const [myVacancies, setMyVacancies] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
 
 //   useEffect(() => {
-//     const fetchMarks = async () => {
+//     const fetchVacancies = async () => {
 //       try {
-//         const response = await fetch("http://localhost:7999/api/user/vacancies", {
-//           method: "GET",
-//           credentials: "include"
-//         });
-//         if (response.ok) {
-//           const data = await response.json();
-//           setMarks(data.marks);
-//           console.log(data);
-//         } else {
-//           console.error("Failed to fetch marks");
+//         const response = await fetch("http://localhost:7999/api/user/vacancies");
+//         if (!response.ok) {
+//           throw new Error("Network response was not ok");
 //         }
+//         const data = await response.json();
+//         setMyVacancies(data);
 //       } catch (error) {
-//         console.error("Error fetching marks:", error);
+//         setError(error.message);
+//       } finally {
+//         setLoading(false);
 //       }
 //     };
 
-//     fetchMarks();
+//     fetchVacancies();
 //   }, []);
+
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
+
+//   if (error) {
+//     return <div>Error: {error}</div>;
+//   }
 
 //   return (
 //     <div className="flex justify-center w-full">
 //       <div className="w-11/12">
 //         <h1 className="py-10 text-2xl font-normal">Elanlarım</h1>
 //         <div className="w-full shadow-custom mb-10">
-//           {marks.map((item) => (
-//             <EBookmarkcard key={item.id} item={item} />
-//           ))}
+//           {myVacancies.length > 0 ? (
+//             myVacancies.map((item) => (
+//               <EBookmarkcard key={item.id} item={item} />
+//             ))
+//           ) : (
+//             <div>No vacancies found.</div>
+//           )}
 //         </div>
 //       </div>
 //     </div>
@@ -42,37 +90,40 @@
 
 // export default Emlposts;
 
-
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EBookmarkcard from "../../Components/Employerpagecomponents/Bookmarkcard";
 
 const Emlposts = () => {
-  const [marks, setMarks] = useState([]);
+  const [myVacancies, setMyVacancies] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchMarks = async () => {
+    const fetchVacancies = async () => {
       try {
         const response = await fetch("http://localhost:7999/api/user/vacancies", {
           method: "GET",
           credentials: "include"
         });
-        if (response.ok) {
-          const data = await response.json();
-          setMarks(data.marks);
-          console.log("Fetched marks:", data.marks);
-        } else {
-          setError("Failed to fetch marks");
-          console.error("Failed to fetch marks:", response.statusText);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
+        const data = await response.json();
+        console.log("Fetched data:", data); // Gelen yanıtı 
+        setMyVacancies(data);
       } catch (error) {
-        setError("Error fetching marks");
-        console.error("Error fetching marks:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchMarks();
+    fetchVacancies();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -83,9 +134,13 @@ const Emlposts = () => {
       <div className="w-11/12">
         <h1 className="py-10 text-2xl font-normal">Elanlarım</h1>
         <div className="w-full shadow-custom mb-10">
-          {marks.map((item) => (
-            <EBookmarkcard key={item.id} item={item} />
-          ))}
+          {myVacancies.length > 0 ? (
+            myVacancies.map((item) => (
+              <EBookmarkcard key={item.id} item={item} />
+            ))
+          ) : (
+            <div>No vacancies found.</div>
+          )}
         </div>
       </div>
     </div>
@@ -93,3 +148,4 @@ const Emlposts = () => {
 };
 
 export default Emlposts;
+
