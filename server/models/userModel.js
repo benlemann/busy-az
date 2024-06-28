@@ -65,6 +65,18 @@ userSchema.pre("save", function (next) {
     });
 });
 
+userSchema.methods.addLookVacancy = async function (id) {
+    user = this;
+    user.looks.push(id);
+
+    if (user.looks.length > 10) {
+        user.looks = user.looks.slice(-10);
+    };
+
+    await user.save();
+    return user;
+};
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = { User };

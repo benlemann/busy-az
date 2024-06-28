@@ -8,7 +8,8 @@ app.listen(port, () => {
 });
 app.use(cors({
     origin: "http://localhost:3000",
-    credentials: true
+    credentials: true,
+    methods: ["GET", "POST", "PUT"]
 }));
 
 const { connection } = require("./db");
@@ -31,11 +32,6 @@ const { requestNotify } = require("./middlewares/notify")
 const userRoute = require("./routes/userRoute").router;
 const checkRoute = require("./routes/checkRoute").router;
 const vacancyRoute = require("./routes/vacancyRoute").router;
-
-app.use("*", (req, res, next) => {
-    console.log(req.url);
-    next();
-})
 
 app.use("/api/user", requestNotify, userRoute);
 app.use("/api/check", requestNotify, checkRoute);
