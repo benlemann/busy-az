@@ -23,7 +23,7 @@ router.route("/update")
     .put(authenticateToken, updateUser);
 
 router.route("/freelancer/update")
-    .get(updateFreelancer);
+    .get(authenticateToken, updateFreelancer);
 
 router.route("/")
     .get(authenticateToken, getCurrentUser);
@@ -35,7 +35,7 @@ router.route("/freelancer/:id")
     .get(getFreelancer);
 
 router.route("/vacancies")
-    .get(getEmployerVacancies);
+    .get(authenticateToken, getEmployerVacancies);
 
 router.route("/logout")
     .get(logOutUser);
