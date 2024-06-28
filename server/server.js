@@ -9,7 +9,7 @@ app.listen(port, () => {
 app.use(cors({
     origin: "http://localhost:3000",
     credentials: true,
-    methods: ["GET", "POST", "PUT"]
+    methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 
 const { connection } = require("./db");

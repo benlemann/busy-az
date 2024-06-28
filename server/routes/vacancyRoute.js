@@ -12,7 +12,7 @@ const { authenticateToken } = require("../middlewares/authMiddleWare");
 
 router.route("/:id")
     .get(getVacancy)
-    .delete(deleteVacancy);
+    .delete(authenticateToken, deleteVacancy);
 
 router.route("/look/:id")
     .put(authenticateToken, lookVacancy);

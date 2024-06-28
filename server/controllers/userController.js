@@ -283,8 +283,6 @@ const getFreelancer = async (req, res) => {
 };
 
 const getEmployerVacancies = async (req, res) => {
-    console.log(req.user);
-
     if (req.user.userrole !== "employer") {
         return res.status(400).json({
             success: false,
