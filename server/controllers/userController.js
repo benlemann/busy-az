@@ -1,4 +1,5 @@
 const { User } = require("../models/userModel");
+const { Vacancy } = require("../models/vacancyModel");
 const bcrypt = require("bcryptjs");
 const { createTokenForLogin } = require("../token/createToken");
 
@@ -192,58 +193,6 @@ const updateUser = async (req, res) => {
     res.status(200).json({ success: true });
 };
 
-const updateEmployer = async (req, res) => {
-    const keys = ["workplacename", "workplacecreateddate", "country", "city", "phone", "email"];
-
-    Object.keys(req.body).forEach(key => {
-        if (!keys.includes(key)) {
-            return res.status(400).json({ success: false });
-        };
-    });
-
-    const { workplacename, workplacecreateddate, country, city, phone, email } = req.body;
-
-    const user = await User.findById(req.user._id);
-
-    if (user.userrole !== "employer") {
-        return res.status(400).json({ success: false });
-    };
-
-    try {
-        await User.findByIdAndUpdate(
-            req.user._id,
-            {
-                workplacename,
-                workplacecreateddate,
-                country,
-                city,
-                phone,
-                email
-            },
-            {
-                new: true,
-                runValidators: true,
-                context: "query"
-            }
-        );
-
-        res.status(200).json({ success: true });
-    } catch (err) {
-        let errors = new Object();
-
-        if (err.name === "ValidationError") {
-            Object.keys(err.errors).forEach(key => {
-                errors[key] = err.errors[key].message;
-            });
-        };
-
-        res.status(400).json({
-            success: false,
-            errors
-        });
-    };
-};
-
 const updateFreelancer = async (req, res) => {
     const keys = ["name", "gender", "birthday", "country", "city", "phone", "email", "workarea"];
 
@@ -307,7 +256,7 @@ const getCurrentUser = (req, res) => {
 
 const getFreelancers = async (req, res) => {
     const freelancers = await User.find({ userrole: "freelancer" })
-        .select("-password -workplacename -workplacecreateddate -updatedAt -createdAt");
+        .select("-password -updatedAt -createdAt");
 
     freelancers.reverse();
 
@@ -321,7 +270,7 @@ const getFreelancer = async (req, res) => {
     const freelancer = await User.findOne({
         _id: req.params.id,
         userrole: "freelancer"
-    }).select("-password -workplacename -workplacecreateddate -updatedAt -createdAt");
+    }).select("-password -updatedAt -createdAt");
 
     if (!freelancer) {
         return res.status(404).json({ success: false });
@@ -330,6 +279,22 @@ const getFreelancer = async (req, res) => {
     res.status(200).json({
         success: true,
         freelancer
+    });
+};
+
+const getEmployerVacancies = async (req, res) => {
+    if (req.user.userrole !== "employer") {
+        return res.status(400).json({
+            success: false,
+            message: "UserIsNotEmployee"
+        });
+    };
+
+    const vacancies = await Vacancy.find({ user: req.user._id });
+
+    res.status(200).json({
+        success: true,
+        vacancies
     });
 };
 
@@ -342,10 +307,10 @@ module.exports = {
     createUser,
     loginUser,
     updateUser,
-    updateEmployer,
     updateFreelancer,
     getCurrentUser,
     getFreelancers,
     getFreelancer,
+    getEmployerVacancies,
     logOutUser
 };

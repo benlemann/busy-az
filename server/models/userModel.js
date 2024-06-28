@@ -80,17 +80,7 @@ const userSchema = new Schema({
         type: String,
         default: ""
     },
-
-    workplacename: {
-        type: String,
-        default: ""
-    },
-
-    workplacecreateddate: {
-        type: String,
-        default: ""
-    },
-
+    
     workarea: {
         type: String,
         default: ""
