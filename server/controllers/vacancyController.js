@@ -104,6 +104,7 @@ const createVacancy = async (req, res) => {
         const { title, description, salary, location, deadline } = req.body;
         const vacancy = await Vacancy.create({
             id: req.user._id,
+            user: req.user._id,
             title: title,
             description: description,
             salary: Number(salary),

@@ -294,6 +294,8 @@ const getEmployerVacancies = async (req, res) => {
 
     const vacancies = await Vacancy.find({ user: req.user._id });
 
+    vacancies.reverse();
+    
     res.status(200).json({
         success: true,
         vacancies
