@@ -20,12 +20,13 @@ const Information = () => {
             className="border p-2 rounded-sm w-full"
             type="text"
             placeholder="İş yeri adı girin"
+            name="workplacename"
           />
         </div>
         <div className="px-6">
           <h5 className="py-3">İş yeri yaradılma tarixi</h5>
           {/* workplacecreateddate */}
-          <input className="border p-2 rounded-sm w-full" type="date" />
+          <input name="workplacecreateddate" className="border p-2 rounded-sm w-full" type="date" />
         </div>
         <div className="px-6">
           <h5 className="py-3">Ölkə</h5>
@@ -43,6 +44,7 @@ const Information = () => {
             className="border p-2 rounded-sm w-full"
             type="text"
             placeholder="Şəhərinizi girin"
+            name="city"
           />
         </div>
         <div className="px-6">
@@ -51,6 +53,7 @@ const Information = () => {
             className="border p-2 rounded-sm w-full"
             type="tel"
             placeholder="Mobil telefon nömrənizi girin"
+            name="phone"
           />
         </div>
         <div className="px-6">
@@ -59,6 +62,7 @@ const Information = () => {
             className="border p-2 rounded-sm w-full"
             type="email"
             placeholder="E-mail adresinizi girin"
+            name="email"
           />
         </div>
        

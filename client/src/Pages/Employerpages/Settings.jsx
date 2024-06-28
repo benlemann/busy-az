@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { MdLockOutline } from "react-icons/md";
 
 import profile from "../../assets/user-128.svg";
 
 const Settings = () => {
-  const user = {
-    name: "Sabit",
-    email: "sabit@gmail.com",
-    password: "12356",
-    phone: "+994-70-070-88-99",
-    userrole: "employer",
-  };
+  const [user, setUser] = useState({})
 
+  const getUser = async () => {
+    const response = await fetch("http://localhost:7999/api/user", {
+      method: "GET",
+      credentials: "include"
+    });
+
+    const data = await response.json();
+
+    setUser(data.user)
+    console.log(data)
+  }
+  useEffect(() => {
+    getUser()
+  }, [])
   return (
     <div className="flex justify-center w-full">
       <div className="w-11/12">
