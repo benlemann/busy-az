@@ -13,13 +13,10 @@
 
 //     description
 
-//     gender man woman
-
 //     salary
 
 //     location
     
-//     jobtype
 
 //     deadline
 //    */
@@ -112,7 +109,7 @@ const EPost = () => {
     }),
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
-        const response = await fetch('/api/vacancy', {
+        const response = await fetch('http://localhost:7999/api/vacancy', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

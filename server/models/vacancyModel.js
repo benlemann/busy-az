@@ -19,21 +19,6 @@ const vacancySchema = new Schema({
         required: [true, "Açıqlama hissəsi məcburidir"]
     },
 
-    gender: {
-        type: String,
-        required: [true, "Cins hissəsi məcburidir"],
-        validate: [
-            (value) => {
-                if (value === "man" || value === "woman"){
-                    return true;
-                };
-                return false;
-            },
-
-            "Cins düzgün deyil"
-        ]
-    },
-
     salary: {
         type: Number,
         required: [true, "Maaş hissəsi məcbiridir"],
@@ -52,11 +37,6 @@ const vacancySchema = new Schema({
     location: {
         type: String,
         required: [true, "Ünvan hissəsi məcburidir"]
-    }, 
-    
-    jobtype: {
-        type: String,
-        required: [true, "İş tipi hissəsi məcburidir"]
     },
 
     date: {

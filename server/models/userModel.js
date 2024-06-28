@@ -49,7 +49,52 @@ const userSchema = new Schema({
             type: ObjectId,
             ref: "Vacancy"
         }
-    ]
+    ],
+
+    gender: {
+        type: String,
+        default: "",
+        validate: [
+            (value) => {
+                if (value === "man" || value === "woman" || value === "") {
+                    return true;
+                };
+                return false;
+            },
+
+            "Cins düzgün deyil"
+        ]
+    },
+
+    birthday: {
+        type: String,
+        default: ""
+    },
+
+    country: {
+        type: String,
+        default: ""
+    },
+
+    city: {
+        type: String,
+        default: ""
+    },
+
+    workplacename: {
+        type: String,
+        default: ""
+    },
+
+    workplacecreateddate: {
+        type: String,
+        default: ""
+    },
+
+    workarea: {
+        type: String,
+        default: ""
+    },
 },
     {
         timestamps: true

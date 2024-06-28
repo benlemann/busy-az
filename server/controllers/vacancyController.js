@@ -92,7 +92,7 @@ const createVacancy = async (req, res) => {
         });
     };
 
-    const keys = ["title", "description", "gender", "salary", "location", "jobtype"];
+    const keys = ["title", "description", "salary", "location"];
 
     Object.keys(req.body).forEach(key => {
         if (!keys.includes(key)) {
@@ -101,15 +101,13 @@ const createVacancy = async (req, res) => {
     });
 
     try {
-        const { title, description, gender, salary, location, jobtype } = req.body;
+        const { title, description, salary, location } = req.body;
         const vacancy = await Vacancy.create({
             id: req.user._id,
             title: title,
             description: description,
-            gender: gender,
             salary: Number(salary),
-            location: location,
-            jobtype: jobtype,
+            location: location
         })
 
         res.status(201).json({
