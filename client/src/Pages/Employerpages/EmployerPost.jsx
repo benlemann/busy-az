@@ -4,6 +4,25 @@ import { RiPagesLine } from "react-icons/ri";
 
 
 const EPost = () => {
+
+  // /api/vacancy POST
+
+  /**
+   * 
+    title
+
+    description
+
+    gender man woman
+
+    salary
+
+    location
+    
+    jobtype
+
+    deadline
+   */
   return (
     <div className="p-4">
       <div className="min-h-10 p-6">
@@ -37,7 +56,7 @@ const EPost = () => {
           <h5 className="py-3">Təklif olunan maaş</h5>
           <input
             className="border p-2 rounded-sm w-full"
-            type="tel"
+            type="number"
             placeholder="Maaş miqdarı - AZN ilə"
           />
         </div>

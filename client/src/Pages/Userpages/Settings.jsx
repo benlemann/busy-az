@@ -18,10 +18,6 @@ const Settings = () => {
 
     setUser(data.user)
     console.log(data)
-
-
-
-
   }
 
   // const updateProfile = async () => {

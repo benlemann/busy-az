@@ -107,7 +107,7 @@ const createVacancy = async (req, res) => {
             title: title,
             description: description,
             gender: gender,
-            salary: salary,
+            salary: Number(salary),
             location: location,
             jobtype: jobtype,
         })

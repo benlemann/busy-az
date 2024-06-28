@@ -36,7 +36,17 @@ const vacancySchema = new Schema({
 
     salary: {
         type: Number,
-        required: [true, "Maaş hissəsi məcbiridir"]
+        required: [true, "Maaş hissəsi məcbiridir"],
+        validate: [
+            (value) => {
+                if (value <= 0 || isNaN(value)) {
+                    return false;
+                };
+                return true;
+            },
+            
+            ,"Maaş bu məğləbdə ola bilməz"
+        ]
     },
 
     location: {
@@ -52,6 +62,11 @@ const vacancySchema = new Schema({
     date: {
         type: String,
         default: moment().format('L')
+    },
+
+    deadline: {
+        type: String,
+        required: [true, "Bitmə tarixi hissəsi məcburidir"]
     }
 },
     {

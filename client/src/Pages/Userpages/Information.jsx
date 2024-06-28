@@ -2,6 +2,9 @@ import React from "react";
 import { FaUserEdit } from "react-icons/fa";
 
 const Information = () => {
+  // /api/user/freelancer/update PUT
+
+
   return (
     <div className="p-4">
       <div className="min-h-10 p-6">
@@ -12,7 +15,8 @@ const Information = () => {
       </div>
       <div className="w-full grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 py-6">
         <div className="px-6">
-          <h5 className="py-3">Ad</h5>
+          <h5 className="py-3">Ad</h5> 
+          {/* name soyad silinecek */}
           <input
             className="border p-2 rounded-sm w-full"
             type="text"
@@ -29,19 +33,20 @@ const Information = () => {
         </div>
         <div className="px-6">
           <h5 className="py-3">Cinsi</h5>
+          {/* gender */}
           <select className="border p-2 rounded-sm w-full">
-            <option value="male">Kişi</option>
-            <option value="female">Qadın</option>
-            <option value="other">Digər</option>
+            <option value="man">Kişi</option>
+            <option value="woman">Qadın</option>
           </select>
         </div>
         <div className="px-6">
           <h5 className="py-3">Doğum tarixi</h5>
+          {/* brithday */}
           <input className="border p-2 rounded-sm w-full" type="date" />
         </div>
         <div className="px-6">
           <h5 className="py-3">Ölkə</h5>
-          <select name="user_country" className="border p-2 rounded-sm w-full">
+          <select name="country" className="border p-2 rounded-sm w-full">
             <option value="">Seçilməyib</option>
             <option value="1">Azərbaycan</option>
             <option value="2">Rusiya</option>
@@ -51,6 +56,7 @@ const Information = () => {
         </div>
         <div className="px-6">
           <h5 className="py-3">Şəhər</h5>
+          {/* city */}
           <input
             className="border p-2 rounded-sm w-full"
             type="text"
@@ -75,6 +81,7 @@ const Information = () => {
         </div>
         <div className="px-6">
           <h5 className="py-3">İşləmək istədiyim sahə</h5>
+          {/* workarea */}
           <input
             className="border p-2 rounded-sm w-full"
             type="text"

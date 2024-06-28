@@ -2,6 +2,8 @@ import React from "react";
 import { FaUserEdit } from "react-icons/fa";
 
 const Information = () => {
+  // /api/user/employer/update PUT
+
   return (
     <div className="p-4">
       <div className="min-h-10 p-6">
@@ -13,6 +15,7 @@ const Information = () => {
       <div className="w-full grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 py-6">
       <div className="px-6">
           <h5 className="py-3">İş yeri adı</h5>
+          {/* workplacename */}
           <input
             className="border p-2 rounded-sm w-full"
             type="text"
@@ -21,11 +24,12 @@ const Information = () => {
         </div>
         <div className="px-6">
           <h5 className="py-3">İş yeri yaradılma tarixi</h5>
+          {/* workplacecreateddate */}
           <input className="border p-2 rounded-sm w-full" type="date" />
         </div>
         <div className="px-6">
           <h5 className="py-3">Ölkə</h5>
-          <select name="user_country" className="border p-2 rounded-sm w-full">
+          <select name="country" className="border p-2 rounded-sm w-full">
             <option value="">Seçilməyib</option>
             <option value="1">Azərbaycan</option>
             <option value="2">Rusiya</option>
