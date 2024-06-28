@@ -109,8 +109,8 @@ const Emlposts = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log("Fetched data:", data); // Gelen yanıtı 
-        setMyVacancies(data);
+        console.log("Fetched data:", data.vacancies); // Gelen yanıtı 
+        setMyVacancies(data.vacancies);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -120,6 +120,10 @@ const Emlposts = () => {
 
     fetchVacancies();
   }, []);
+
+  const handleDelete = (id) => {
+    setMyVacancies((prevVacancies) => prevVacancies.filter((vacancy) => vacancy.id !== id));
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -136,7 +140,7 @@ const Emlposts = () => {
         <div className="w-full shadow-custom mb-10">
           {myVacancies.length > 0 ? (
             myVacancies.map((item) => (
-              <EBookmarkcard key={item.id} item={item} />
+              <EBookmarkcard key={item.id} item={item} onDelete={handleDelete}  />
             ))
           ) : (
             <div>No vacancies found.</div>

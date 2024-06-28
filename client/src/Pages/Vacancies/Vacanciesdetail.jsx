@@ -1,29 +1,31 @@
 import React, {  useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetailUser } from "../../Redux/userSlice";
 import Loading from "../../Components/Loading";
+import { getDetailVacancy } from "../../Redux/vacanciesSlice";
 import DetailComp from "../../Components/DetailComp";
 
-const Userdetail = () => {
+const Vacanciesdetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { userDetail, userDetailStatus } = useSelector((state) => state.users);
+  const { vacancyDetail, vacancyDetailStatus } = useSelector((state) => state.vacancies);
 
   useMemo(() => {
-    dispatch(getDetailUser(id));
+    dispatch(getDetailVacancy(id));
   }, [dispatch, id]);
+
+  console.log(vacancyDetail, vacancyDetailStatus );
 
 
   return (
     <div>
-      {userDetailStatus == "loading" ? (
+      {vacancyDetailStatus == "loading" ? (
         <Loading />
       ) : (
-        <DetailComp type="user" data={userDetail} />
+        <DetailComp type="job" data={vacancyDetail} />
       )}
     </div>
   );
 };
 
-export default Userdetail;
+export default Vacanciesdetail;

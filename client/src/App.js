@@ -17,6 +17,8 @@ import EProfile from "./Pages/Employerpages/Profile";
 import ESettings from "./Pages/Employerpages/Settings";
 import Emlposts from "./Pages/Employerpages/Emlposts";
 import EPost from "./Pages/Employerpages/EmployerPost";
+import Vacancies from './Pages/Vacancies/Vacancies'
+import Vacanciesdetail from './Pages/Vacancies/Vacanciesdetail'
 
 const App = () => (
   <>
@@ -28,7 +30,9 @@ const App = () => (
       <Route path="/signup" element={<Signup />} />
       <Route path="/jobseekers" element={<Jobseekers />} />
       <Route path="jobseekers/users/:id" element={<Userdetail />} />
+      <Route path="vacancies/vacancy/:id" element={<Vacanciesdetail />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/vacancies" element={<Vacancies />} />
 
       <Route path="/dashboard/freelancer/profile" element={<Profile />}>
         <Route path="" element={<Information />} />
