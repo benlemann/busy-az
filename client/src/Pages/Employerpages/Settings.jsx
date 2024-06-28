@@ -1,47 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CgProfile } from "react-icons/cg";
 import { MdLockOutline } from "react-icons/md";
 
 import profile from "../../assets/user-128.svg";
 
 const Settings = () => {
+  const user = {
+    name: "Sabit",
+    email: "sabit@gmail.com",
+    password: "12356",
+    phone: "+994-70-070-88-99",
+    userrole: "employer",
+  };
 
-  const [user, setUser] = useState({})
-
-  const getUser = async () => {
-    const response = await fetch("http://localhost:7999/api/user", {
-      method: "GET",
-      credentials: "include"
-    });
-
-    const data = await response.json();
-
-    setUser(data.user)
-    console.log(data)
-
-
-
-
-  }
-
-  // const updateProfile = async () => {
-  //   const res = await fetch("http://localhost:7999/api/user/update", {
-  //     method: 'PUT',
-  //     credentials: "include",
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(values)
-  //   });
-  
-
-   
-  // }
-
-
-  useEffect(() => {
-    getUser()
-  }, [])
   return (
     <div className="flex justify-center w-full">
       <div className="w-11/12">
@@ -69,7 +40,7 @@ const Settings = () => {
                     className="border p-2 rounded-sm w-full"
                     type="text"
                     name="name"
-                    defaultValue={user.name}
+                    value={user.name}
                     id="name"
                   />
                 </div>
@@ -115,15 +86,15 @@ const Settings = () => {
           <div className="w-full grid gap-6 sm:grid-cols-2 lg:grid-cols-3 py-6">
             <div className="px-6">
               <h5 className="py-3">indiki parol</h5>
-              <input name="currentpassword" className="border p-2 rounded-sm w-full" type="password" />
+              <input className="border p-2 rounded-sm w-full" type="password" />
             </div>
             <div className="px-6">
               <h5 className="py-3">yeni parol</h5>
-              <input name="newpassword1" className="border p-2 rounded-sm w-full" type="password" />
+              <input className="border p-2 rounded-sm w-full" type="password" />
             </div>
             <div className="px-6">
               <h5 className="py-3">yeni parolu təkrarla</h5>
-              <input name="newpassword2" className="border p-2 rounded-sm w-full" type="password" />
+              <input className="border p-2 rounded-sm w-full" type="password" />
             </div>
           </div>
         </div>

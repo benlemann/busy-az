@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import Validation from './Validation';
 import styles from './Signup.module.css';
@@ -19,9 +19,30 @@ const initialValues = {
 
 const Signup = () => {
   const [isPosting, setIsPosting] = useState(false);
-  const navigate =  useNavigate()
+  const navigate = useNavigate();
+
+  const checkLogin = async () => {
+    const response = await fetch("http://localhost:7999/api/user", {
+      method: "GET",
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    return data.success;
+  };
+
+  useEffect(() => {
+    const performLoginCheck = async () => {
+      const isLoggedIn = await checkLogin();
+      if (isLoggedIn) {
+        navigate("/");
+      }
+    };
+
+    performLoginCheck();
+  }, []);
+
   const handleSubmit = async (values, actions) => {
-    console.log(values);
     try {
       setIsPosting(true);
       const res = await fetch("http://localhost:7999/api/user/signup", {
@@ -37,10 +58,7 @@ const Signup = () => {
       if (response.success) {
         navigate('/login');
       } else {
-        // errorlari bildir
-        // response.errors {
-        //               email: "d,asidhiasdihasidhisadjisaji"
-        // }
+        console.log(response.errors);
       };
     } catch (error) {
       console.error("Error:", error);
@@ -66,6 +84,7 @@ const Signup = () => {
       >
         {({ errors, isSubmitting }) => (
           <Form className={styles.form}>
+            
             <div className={styles.radioinps}>
               <label className={styles.radioLabel}>
                 <Field type="radio" name="userrole" value="freelancer" className={styles.radioInput} />

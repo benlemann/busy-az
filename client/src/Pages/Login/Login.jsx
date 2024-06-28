@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styles from './Login.module.css';
@@ -14,6 +14,28 @@ const initialValues = {
 const Login = () => {
     const [isPosting, setIsPosting] = useState(false);
     const navigate = useNavigate();
+
+    const checkLogin = async () => {
+        const response = await fetch("http://localhost:7999/api/user", {
+            method: "GET",
+            credentials: "include",
+        });
+
+        const data = await response.json();
+        console.log(data.success);
+        return data.success;
+    };
+
+    useEffect(() => {
+        const performLoginCheck = async () => {
+            const isLoggedIn = await checkLogin();
+            if (isLoggedIn) {
+                navigate("/");
+            }
+        };
+
+        performLoginCheck();
+    }, []);
 
     const handleSubmit = async (values, actions) => {
         console.log(values);
@@ -33,9 +55,9 @@ const Login = () => {
 
             if (response.success) {
                 if (response.userrole === "freelancer") {
-                    navigate('/dashboard/profile/freelancer');
+                    navigate('/dashboard/freelancer/profile');
                 } else if (response.userrole === "employer") {
-                    navigate('/dashboard/profile/employer');
+                    navigate('/dashboard/employer/profile');
                 }
             } else {
                 // Genel hata mesajı ekleyin
