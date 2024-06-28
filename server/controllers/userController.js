@@ -100,6 +100,9 @@ const loginUser = async (req, res) => {
 const updateUser = async (req, res) => {
     const keys = ["name", "email", "phone", "currentpassword", "newpassword1", "newpassword2"];
 
+    console.log("body ::::::::", req.body);
+    console.log("user ::::::::", req.user);
+
     Object.keys(req.body).forEach(key => {
         if (!keys.includes(key)) {
             return res.status(400).json({ success: false });
@@ -153,11 +156,14 @@ const updateUser = async (req, res) => {
             user.name = name;
             user.email = email;
             user.phone = phone;
-            user.password = newpassword1;
+            if (currentpassword) {
+                user.password = newpassword1;
+            };
             await user.save();
 
-            return res.status(200).json({ success: true });
+            res.status(200).json({ success: true });
         } catch (err) {
+            console.log(err);
             if (err.name === "ValidationError") {
                 Object.keys(err.errors).forEach(key => {
                     errors[key] = err.errors[key].message;
@@ -174,20 +180,156 @@ const updateUser = async (req, res) => {
                 };
             };
 
-            return res.status(201).json({
+            res.status(400).json({
                 success: false,
                 errors
             });
         };
+
+        return
     };
 
     res.status(200).json({ success: true });
 };
 
-const getUser = (req, res) => {
+const updateEmployer = async (req, res) => {
+    const keys = ["workplacename", "workplacecreateddate", "country", "city", "phone", "email"];
+
+    Object.keys(req.body).forEach(key => {
+        if (!keys.includes(key)) {
+            return res.status(400).json({ success: false });
+        };
+    });
+
+    const { workplacename, workplacecreateddate, country, city, phone, email } = req.body;
+
+    const user = await User.findById(req.user._id);
+
+    if (user.userrole !== "employer") {
+        return res.status(400).json({ success: false });
+    };
+
+    try {
+        await User.findByIdAndUpdate(
+            req.user._id,
+            {
+                workplacename,
+                workplacecreateddate,
+                country,
+                city,
+                phone,
+                email
+            },
+            {
+                new: true,
+                runValidators: true,
+                context: "query"
+            }
+        );
+
+        res.status(200).json({ success: true });
+    } catch (err) {
+        let errors = new Object();
+
+        if (err.name === "ValidationError") {
+            Object.keys(err.errors).forEach(key => {
+                errors[key] = err.errors[key].message;
+            });
+        };
+
+        res.status(400).json({
+            success: false,
+            errors
+        });
+    };
+};
+
+const updateFreelancer = async (req, res) => {
+    const keys = ["name", "gender", "birthday", "country", "city", "phone", "email", "workarea"];
+
+    Object.keys(req.body).forEach(key => {
+        if (!keys.includes(key)) {
+            return res.status(400).json({ success: false });
+        };
+    });
+
+    const { name, gender, birthday, country, city, phone, email, workarea } = req.body;
+
+    const user = await User.findById(req.user._id);
+
+    if (user.userrole !== "freelancer") {
+        return res.status(400).json({ success: false });
+    };
+
+    try {
+        await User.findByIdAndUpdate(
+            req.user._id,
+            {
+                name,
+                gender,
+                birthday,
+                country,
+                city,
+                phone,
+                email,
+                workarea
+            },
+            {
+                new: true,
+                runValidators: true,
+                context: "query"
+            }
+        );
+
+        res.status(200).json({ success: true });
+    } catch (err) {
+        let errors = new Object();
+
+        if (err.name === "ValidationError") {
+            Object.keys(err.errors).forEach(key => {
+                errors[key] = err.errors[key].message;
+            });
+        };
+
+        res.status(400).json({
+            success: false,
+            errors
+        });
+    };
+};
+
+const getCurrentUser = (req, res) => {
     res.status(200).json({
         success: true,
         user: req.user
+    });
+};
+
+const getFreelancers = async (req, res) => {
+    const freelancers = await User.find({ userrole: "freelancer" })
+        .select("-password -workplacename -workplacecreateddate -updatedAt -createdAt");
+
+    freelancers.reverse();
+
+    res.status(200).json({
+        success: true,
+        freelancers
+    });
+};
+
+const getFreelancer = async (req, res) => {
+    const freelancer = await User.findOne({
+        _id: req.params.id,
+        userrole: "freelancer"
+    }).select("-password -workplacename -workplacecreateddate -updatedAt -createdAt");
+
+    if (!freelancer) {
+        return res.status(404).json({ success: false });
+    };
+
+    res.status(200).json({
+        success: true,
+        freelancer
     });
 };
 
@@ -200,6 +342,10 @@ module.exports = {
     createUser,
     loginUser,
     updateUser,
-    getUser,
+    updateEmployer,
+    updateFreelancer,
+    getCurrentUser,
+    getFreelancers,
+    getFreelancer,
     logOutUser
 };

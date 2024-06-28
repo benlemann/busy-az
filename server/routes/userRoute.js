@@ -4,11 +4,14 @@ const {
     createUser,
     loginUser,
     updateUser,
-    getUser,
+    updateEmployer,
+    updateFreelancer,
+    getCurrentUser,
+    getFreelancers,
+    getFreelancer,
     logOutUser
 } = require("../controllers/userController");
 const { authenticateToken } = require("../middlewares/authMiddleWare");
-
 
 router.route("/signup")
     .post(createUser);
@@ -19,8 +22,20 @@ router.route("/login")
 router.route("/update")
     .put(authenticateToken, updateUser);
 
+router.route("/employer/update")
+    .put(updateEmployer);
+
+router.route("/freelancer/update")
+    .get(updateFreelancer);
+
 router.route("/")
-    .get(authenticateToken, getUser);
+    .get(authenticateToken, getCurrentUser);
+
+router.route("/freelancers")
+    .get(getFreelancers);
+
+router.route("/freelancer/:id")
+    .get(getFreelancer);
 
 router.route("/logout")
     .get(logOutUser);
