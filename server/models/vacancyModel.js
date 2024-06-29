@@ -41,7 +41,7 @@ const vacancySchema = new Schema({
 
     date: {
         type: String,
-        default: moment().format('L')
+        default: moment().format('YYYY-MM-DD')
     },
 
     deadline: {
