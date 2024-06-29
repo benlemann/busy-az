@@ -31,6 +31,37 @@ const authenticateToken = async (req, res, next) => {
     };
 };
 
+const authenticateTokenForAdmin = async (req, res, next) => {
+    const token = req.cookies.jwt;
+
+    if (token) {
+        jwt.verify(token, process.env.JWT_ADMIN_SECRET, async (err, decoded) => {
+            if (err) return res.status(400).json({
+                success: false,
+                message: "UserNotFound"
+            });
+
+            const user = await User.findById(decoded.userId).select("-password");
+
+            if (!user) {
+                return res.status(400).json({
+                    success: false,
+                    message: "UserNotFound"
+                });;
+            };
+
+            req.user = user;
+            next();
+        });
+    } else {
+        res.status(400).json({
+            success: false,
+            message: "UserNotFound"
+        });;
+    };
+};
+
 module.exports = {
-    authenticateToken
+    authenticateToken,
+    authenticateTokenForAdmin
 };

@@ -6,10 +6,13 @@ const createTokenForLogin = (userId) => {
     });
 };
 
-const createTokenForAnnouncement = (userId) => {
-    return jwt.sign({ userId }, process.env.JWT_SECRET, {
-        expiresIn: "1h"
+const createTokenForLoginForAdmin = (userId) => {
+    return jwt.sign({ userId }, process.env.JWT_ADMIN_SECRET, {
+        expiresIn: "30d"
     });
 };
 
-module.exports = { createTokenForLogin, createTokenForAnnouncement };
+module.exports = {
+    createTokenForLogin,
+    createTokenForLoginForAdmin
+};

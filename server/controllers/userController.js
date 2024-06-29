@@ -1,7 +1,10 @@
 const { User } = require("../models/userModel");
 const { Vacancy } = require("../models/vacancyModel");
 const bcrypt = require("bcryptjs");
-const { createTokenForLogin } = require("../token/createToken");
+const {
+    createTokenForLogin,
+    createTokenForLoginForAdmin
+} = require("../token/createToken");
 
 const createUser = async (req, res) => {
     try {
@@ -79,7 +82,12 @@ const loginUser = async (req, res) => {
     };
 
     if (await bcrypt.compare(password, user.password)) {
-        const token = await createTokenForLogin(user._id);
+        let token;
+        if (user.userrole === "admin") {
+            token = await createTokenForLoginForAdmin(user._id);
+        } else {
+            token = await createTokenForLogin(user._id);
+        };
 
         res.cookie("jwt", token, {
             httpOnly: true
@@ -293,7 +301,7 @@ const getEmployerVacancies = async (req, res) => {
     const vacancies = await Vacancy.find({ user: req.user._id });
 
     vacancies.reverse();
-    
+
     res.status(200).json({
         success: true,
         vacancies
@@ -305,6 +313,52 @@ const logOutUser = (req, res) => {
     res.status(200).json({ success: true });
 };
 
+const lookVacancy = async (req, res) => {
+    let vacancy;
+    try {
+        vacancy = await Vacancy.findById(req.params.id);
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            message: "VacancyNotFound"
+        });
+    };
+
+    if (!vacancy) {
+        return res.status(400).json({
+            success: false,
+            message: "VacancyNotFound"
+        });
+    };
+
+    if (req.user.userrole !== "freelancer") {
+        return res.status(200).json({
+            success: false,
+            message: "UserroleIsNotFreelancer"
+        });
+    };
+
+    let user = await User.findById(req.user._id);
+
+    user = user.addLookVacancy(vacancy._id);
+
+    res.status(200).json({
+        success: true
+    });
+};
+
+const getLooks = async (req, res) => {
+    const vacancies = await Vacancy.find({ _id: { $in: req.user.looks } })
+        .populate("user", "-password -_id");
+
+    vacancies.reverse();
+
+    res.status(200).json({
+        success: true,
+        vacancies
+    });
+};
+
 module.exports = {
     createUser,
     loginUser,
@@ -314,5 +368,7 @@ module.exports = {
     getFreelancers,
     getFreelancer,
     getEmployerVacancies,
-    logOutUser
+    logOutUser,
+    lookVacancy,
+    getLooks,
 };

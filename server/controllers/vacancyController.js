@@ -36,42 +36,6 @@ const deleteVacancy = async (req, res) => {
     });
 };
 
-const lookVacancy = async (req, res) => {
-    const vacancy = await Vacancy.findById(req.params.id);
-
-    if (!vacancy) {
-        return res.status(400).json({
-            success: false,
-            message: "VacancyNotFound"
-        });
-    };
-
-    if (req.user.userrole == "freelancer") {
-        user = user.addLookVacancy(vacancy._id);
-
-        return res.status(200).json({
-            success: true
-        });
-    };
-
-    res.status(200).json({
-        success: false,
-        message: "UserroleIsNotFreelancer"
-    });
-};
-
-const getLooks = async (req, res) => {
-    const vacancies = await Vacancy.find({ _id: { $in: req.user.looks } })
-        .populate("user", "-password -_id");
-
-    vacancies.reverse();
-
-    res.status(200).json({
-        success: true,
-        vacancies
-    });
-};
-
 const getVacancies = async (req, res) => {
     const vacancies = await Vacancy.find({})
         .populate("user", "-password -_id");
@@ -134,8 +98,6 @@ const createVacancy = async (req, res) => {
 module.exports = {
     getVacancy,
     deleteVacancy,
-    lookVacancy,
-    getLooks,
     getVacancies,
     createVacancy
 };

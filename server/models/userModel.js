@@ -102,7 +102,9 @@ userSchema.pre("save", function (next) {
 
 userSchema.methods.addLookVacancy = async function (id) {
     user = this;
-    user.looks.push(id);
+    if (!user.looks.includes(id)) {
+        user.looks.push(id);
+    };
 
     if (user.looks.length > 10) {
         user.looks = user.looks.slice(-10);
