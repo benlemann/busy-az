@@ -1,0 +1,473 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 98%;
+    min-height: 650px;
+    gap: 1rem;
+    text-align: center;
+}
+
+.work {
+    font-family: Nunito, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 42px;
+    color: rgb(31, 91, 255);
+    font-weight: 500;
+}
+
+.find {
+    color: rgb(250, 213, 0);
+}
+
+.autoType {
+    width: 40%;
+}
+
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 928px;
+}
+
+.container {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.numberStatistic {
+    min-height: 520px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex-direction: column; */
+}
+
+.statisticContainer {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.numberHead {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 250px;
+    width: 100%;
+}
+
+.numberAbout {
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 52px;
+    color: #000;
+    text-align: center;
+}
+
+.digital {
+    color: #000000e3;
+    font-weight: 300;
+    width: 60%;
+    text-align: center;
+    font-size: 24px;
+    font-family: Montserrat, Arial, sans-serif;
+}
+
+.numberBottom {
+    width: 100%;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.mission {
+    width: 100%;
+    min-height: 393px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.missionContainer {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.missionImg {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.missionCompany {
+    width: 65%;
+}
+
+.brend {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.company {
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 20px;
+    color: #000000d9;
+    font-weight: 300;
+}
+
+.ceo {
+    font-family: Nunito, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
+.site {
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 14px;
+    color: #000000d9;
+    font-weight: 300;
+}
+
+.reasons {
+    width: 100%;
+    min-height: 704px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reasonAbout {
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 42px;
+    color: #000;
+    text-align: center;
+    font-weight: 600;
+}
+
+.reasonsContainer {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.reasonsAll {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.busy {
+    width: 100%;
+    min-height: 411px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.busyContainer {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.busyAbout {
+    font-family: Montserrat, Arial, sans-serif;
+    color: rgb(0, 95, 249);
+    font-size: 42px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.busyPiece {
+    color: #000;
+}
+
+.brands{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.brands img{
+    width: 13%;
+}
+.partner{
+    background-image: url("https://thumb.tildacdn.com/tild6361-3663-4639-a636-653036346562/-/format/webp/Untitled_design_17.png");
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 594px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.partnerContainer{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+.partnerAbout{
+    width: 45%;
+}
+.collaboration{
+    width: 30%;
+}
+.partnerAbout h2{
+    font-family: Nunito, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 72px;
+    font-weight: 500;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+.partnerAbout p{
+    font-family: Nunito, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #fff;
+}
+.collaboration{
+    background-color: #fff;
+    padding: 1.5em;
+    gap: 1.5rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.collaborationAbout{
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+}
+.fill{
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #000;
+}
+.nameEmail{
+    border: none;
+    background-color: #F0F0F0;
+    outline: none;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .12);
+}
+.numberInp{
+    padding: 15px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .12);
+    border: none;
+    background-color: #F0F0F0;
+    border-radius: 5px;
+    outline: none;
+}
+.sendBtn{
+    font-family: Nunito, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #000;
+    font-weight: 700;
+    border: none;
+    padding: 12px;
+    background-color: #F7D151;
+    transition: 0.4s ease;
+    cursor: pointer;
+}
+.sendBtn:hover{
+    background-color: #005FF9;
+    color: #fff;
+}
+.proffesional{
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 16px;
+    color: #000;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+.yes{
+    color: #F7D151;
+}
+/* Media screen */
+@media screen and (max-width:1145px) {
+    .about {
+        flex-direction: column;
+    }
+
+    .autoType {
+        width: 90%;
+    }
+
+    .design {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .designImg {
+        width: 60%;
+    }
+
+    .missionContainer {
+        flex-direction: column;
+        margin-top: 2rem;
+    }
+
+    .missionCompany {
+        width: 100%;
+    }
+
+    .missionImg {
+        width: 90%;
+    }
+
+    .brend {
+        width: 90%;
+    }
+
+    .company {
+        font-size: 18px;
+    }
+    .brands{
+        flex-wrap: wrap;
+    }
+   .brands img{
+    width: 30%;
+    margin-top: 2rem;
+   } 
+   .partnerContainer{
+   flex-direction: column;
+   align-items: center;
+   padding: 1rem;
+   }
+   .partnerAbout{
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+   }
+   .collaboration{
+    width: 70%;
+   }
+}
+@media screen and (max-width:900px) {
+    .about {
+        min-height: 500px;
+    }
+
+    .designImg {
+        width: 90%;
+    }
+
+    .digital {
+        width: 100%;
+    }
+}
+@media screen and (max-width:700px) {
+.carat{
+    display: none;
+}
+.gulfstream{
+    display: none;
+}
+}
+@media screen and (max-width:557px) {
+    .work {
+        font-size: 34px;
+    }
+
+    .designImg {
+        width: 98%;
+    }
+    .brands img{
+        width: 45%;
+    }
+    .busyAbout{
+        font-size: 25px;
+    }
+    .partnerAbout h2{
+        font-size: 35px;
+    }
+    .partnerAbout p{
+        font-size: 20px;
+    }
+    .collaboration{
+        width: 95%;
+       }
+}
+@media screen and (max-width:454px) {
+    .work {
+        font-size: 27px;
+    }
+
+    .reasonAbout {
+        font-size: 32px;
+    }
+    .asth{
+        display: none;
+    }
+    .defacto{
+        display: none;
+    }
+    .busyAbout{
+        font-size: 22px;
+    }
+
+}
+@media screen and (max-width:364px) {
+    .work {
+        font-size: 22px;
+    }
+
+    .numberAbout {
+        font-size: 30px;
+    }
+
+    .digital {
+        font-size: 20px;
+    }
+
+    .company {
+        font-size: 16px;
+    }
+
+    .site {
+        font-size: 13px;
+    }
+    .brands{
+        justify-content: center;
+    }
+    .brands img{
+        width: 80%;
+    }
+    .busyAbout{
+        font-size: 20px;
+    }
+}

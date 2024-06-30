@@ -19,6 +19,13 @@ import Emlposts from "./Pages/Employerpages/Emlposts";
 import EPost from "./Pages/Employerpages/EmployerPost";
 import Vacancies from './Pages/Vacancies/Vacancies'
 import Vacanciesdetail from './Pages/Vacancies/Vacanciesdetail'
+import General from './Pages/Admin/General'
+import Admin from './Pages/Admin/Admin'
+import Users from './Pages/Admin/Users'
+import EditVacancy from './Pages/Admin/EditVacancy'
+import AVacancies from './Pages/Admin/Vacancies'
+import YourComponent from './Pages/About/About'
+
 
 const App = () => (
   <>
@@ -26,6 +33,7 @@ const App = () => (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/blog" element={<Blog />} />
+      <Route path="/about" element={<YourComponent/>} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/jobseekers" element={<Jobseekers />} />
@@ -43,6 +51,14 @@ const App = () => (
         <Route path="post" element={<EPost />} />
         <Route path="" element={<Emlposts />} />
         <Route path="settings" element={<ESettings />} />
+      </Route>
+      <Route path="/admin" element={<Admin />}>
+        <Route index element={<General />} />
+        <Route path="users" element={<Users />} />
+        <Route path="users/:id" element={<Userdetail />} />
+        <Route path="vacancies" element={<AVacancies />} />
+        <Route path="vacancies/:id" element={<Vacanciesdetail />} />
+        <Route path="vacancies/:id/edit" element={<EditVacancy />} /> 
       </Route>
     </Routes>
     <Footer />

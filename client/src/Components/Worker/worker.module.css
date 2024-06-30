@@ -1,0 +1,54 @@
+.workerCard{
+    width: 30%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 4rem;
+}
+.workerImg{
+    width: 73%;
+    height: 270px;
+    display: flex;
+    align-items: start;
+    position: relative;
+    background-color: yellow;
+}
+.workerImg img{
+    /* width: 70%; */
+    width: 301px;
+    height: 320px;
+    position: absolute;
+    bottom: 0;
+}
+.workerName{
+    font-family: Montserrat, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: rgb(51, 51, 51);
+}
+
+
+/* Media screen */
+@media screen and (max-width:991px) {
+    .workerCard{
+        width: 45%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .workerCard{
+        width: 80%;
+    }
+    .workerImg{
+        width: 100%;
+    
+    }
+    
+}
+
+@media screen and (max-width:490px) {
+    .workerImg img{
+        width: 250px;
+    }
+}

@@ -143,7 +143,7 @@ const Emlposts = () => {
               <EBookmarkcard key={item.id} item={item} onDelete={handleDelete}  />
             ))
           ) : (
-            <div>No vacancies found.</div>
+            <div className="py-10 px-10">No vacancies found.</div>
           )}
         </div>
       </div>

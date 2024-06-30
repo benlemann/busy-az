@@ -1,0 +1,47 @@
+.statisticBox {
+    display: flex;
+    gap: 6px;
+    min-height: 100px;
+    flex-direction: column;
+    width: 22%;
+}
+
+.numberSymbol {
+    font-family: Nunito, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    color: #000;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.line {
+    background-color: #005FF9;
+    height: 2px;
+}
+
+.submissive {
+    font-size: 18px;
+    margin: 0;
+    color:rgb(102, 102, 102);
+    font-family: Nunito, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Media screen */
+
+
+@media screen and (max-width:991px) {
+   .statisticBox{
+    width: 30%;
+   }
+}
+
+
+@media screen and (max-width:700px) {
+    .statisticBox{
+     width: 100%;
+    }
+
+ }
+ 
+ 

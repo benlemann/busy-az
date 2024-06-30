@@ -102,7 +102,7 @@ const Vacancies = () => {
                   type="text"
                 />
               </div>
-              <div className="w-full mb-4 ">
+              <div className="w-full mb-4 hidden">
                 <h1 className="pb-6 font-semibold">Minimum yaş</h1>
                 <input
                   className="border p-1 rounded w-full "
@@ -113,10 +113,10 @@ const Vacancies = () => {
                   max="70"
                 />
               </div>
-              <div className="w-full mb-4 ">
+              <div className="w-full mb-4 hidden">
                 <h1 className="pb-6 font-semibold">Maksimum yaş</h1>
                 <input
-                  className="border p-1 rounded w-full "
+                  className="border p-1 rounded w-full hidden"
                   type="number"
                   onChange={handleMaxAgeChange}
                   value={maxAge}
@@ -135,13 +135,15 @@ const Vacancies = () => {
                 />
               </div>
             </div>
+            <div className="flex justify-start">
+              <button
+                className="ml-4 border w-24 h-10 font-medium tracking-wide rounded bg-red-600 text-white border-none"
+                onClick={handleResetFilters}
+              >
+                Təmizlə
+              </button>
+            </div>
 
-            <button
-              className="ml-4 border w-24 h-10 font-medium tracking-wide rounded bg-red-600 text-white border-none"
-              onClick={handleResetFilters}
-            >
-              Təmizlə
-            </button>
           </div>
         </div>
       </div>

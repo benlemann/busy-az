@@ -5,12 +5,12 @@ const Vacancycard = ({ props, backgroundColor }) => {
   const navigate = useNavigate();
 
   
-
+  // /api/user/look/_id  include   put
 
   return (
     <div
       onClick={() => {
-        navigate(`vacancy/${props.id}`);
+        navigate(`vacancy/${props._id}`);
       }}
       className={`flex items-center justify-between w-full min-h-20 border-l-4 border-transparent hover:border-blue-500 p-5 cursor-pointer group ${backgroundColor}`}
     >

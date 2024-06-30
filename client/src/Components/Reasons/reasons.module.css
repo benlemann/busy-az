@@ -1,0 +1,48 @@
+.reasonsBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    min-height: 204px;
+    margin-top: 2rem;
+}
+.numberBg{
+    position: absolute;
+}
+
+.numberBlue{
+    font-size: 225px;
+    font-weight: 700;
+    color: #AFC8F1;
+    font-family: Nunito, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.reasonsAbout{
+    z-index: 999;
+    margin-top: 3rem;
+}
+.reasonAbout{
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #000;
+}
+.result{
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #000000db;
+}
+
+/* Media screen */
+@media screen and (max-width:1262px) {
+    .reasonsBox{
+        width: 45%;
+    }
+}
+@media screen and (max-width:853px) {
+    .reasonsBox{
+        width: 90%;
+        text-align: center;
+        
+    }
+}

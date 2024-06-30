@@ -47,7 +47,7 @@ const Jobseekers = () => {
     let filtered = sorted.filter(
       (item) =>
         item.name.toUpperCase().includes(search.toUpperCase()) ||
-        item.job.toUpperCase().includes(search.toUpperCase())
+        item.workarea.toUpperCase().includes(search.toUpperCase())
     );
 
     if (minAge !== "" || maxAge !== "") {
@@ -162,7 +162,7 @@ const Jobseekers = () => {
           <>
             <div className="flex flex-wrap w-full justify-center">
               {currentItems.map((item) => {
-                return <Usercard key={item.id} props={item} />;
+                return <Usercard key={item._id} props={item} />;
               })}
             </div>
             <div className="w-full justify-center items-center">
