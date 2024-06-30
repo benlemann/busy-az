@@ -2,8 +2,16 @@ const { User } = require('../models/userModel');
 const { Vacancy } = require("../models/vacancyModel");
 
 const getVacancy = async (req, res) => {
-    const vacancy = await Vacancy.findById(req.params.id)
-       .populate("user", "-password -_id");
+    let vacancy;
+    try {
+        vacancy = await Vacancy.findById(req.params.id)
+            .populate("user", "-password -_id");
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            message: "VacancyNotFound"
+        });
+    };
 
     res.status(200).json({
         success: true,
@@ -12,8 +20,16 @@ const getVacancy = async (req, res) => {
 };
 
 const deleteVacancy = async (req, res) => {
-    const vacancy = await Vacancy.findById(req.params.id)
-        .populate("user", "-password");
+    let vacancy;
+    try {
+        vacancy = await Vacancy.findById(req.params.id)
+            .populate("user", "-password -_id");
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            message: "VacancyNotFound"
+        });
+    };
 
     if (!vacancy) {
         return res.status(400).json({

@@ -41,7 +41,15 @@ const getVacancies = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-    const user = await User.findById(req.params.id);
+    let user;
+    try {
+        user = await User.findById(req.params.id);
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            message: "UserNotFound"
+        });
+    };
 
     if (!user || (user && user.userrole === 'admin')) {
         return res.status(400).json({
@@ -57,7 +65,15 @@ const getUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-    const user = await User.findById(req.params.id);
+    let user;
+    try {
+        user = await User.findById(req.params.id);
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            message: "UserNotFound"
+        });
+    };
 
     if (!user || (user && user.userrole === 'admin')) {
         return res.status(400).json({
@@ -82,8 +98,16 @@ const deleteUser = async (req, res) => {
 };
 
 const getVacancy = async (req, res) => {
-    const vacancy = await Vacancy.findById(req.params.id)
-        .populate("user", "-password");
+    let vacancy;
+    try {
+        vacancy = await Vacancy.findById(req.params.id)
+            .populate("user", "-password -_id");
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            message: "VacancyNotFound"
+        });
+    };
 
     if (!vacancy) {
         return res.status(400).json({
@@ -99,7 +123,16 @@ const getVacancy = async (req, res) => {
 };
 
 const updateVacancy = async (req, res) => {
-    const vacancy = await Vacancy.findById(req.params.id);
+    let vacancy;
+    try {
+        vacancy = await Vacancy.findById(req.params.id)
+            .populate("user", "-password -_id");
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            message: "VacancyNotFound"
+        });
+    };
 
     if (!vacancy) {
         return res.status(400).json({
@@ -150,7 +183,16 @@ const updateVacancy = async (req, res) => {
 };
 
 const deleteVacancy = async (req, res) => {
-    const vacancy = await Vacancy.findById(req.params.id);
+    let vacancy;
+    try {
+        vacancy = await Vacancy.findById(req.params.id)
+            .populate("user", "-password -_id");
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            message: "VacancyNotFound"
+        });
+    };
 
     if (!vacancy) {
         return res.status(400).json({

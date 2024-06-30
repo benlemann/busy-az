@@ -202,7 +202,7 @@ const updateUser = async (req, res) => {
 };
 
 const updateFreelancer = async (req, res) => {
-    const keys = ["name", "gender", "birthday", "country", "city", "phone", "email", "workarea"];
+    const keys = ["name", "gender", "birthday", "country", "city", "phone", "email", "workarea", "description"];
 
     Object.keys(req.body).forEach(key => {
         if (!keys.includes(key)) {
@@ -210,7 +210,7 @@ const updateFreelancer = async (req, res) => {
         };
     });
 
-    const { name, gender, birthday, country, city, phone, email, workarea } = req.body;
+    const { name, gender, birthday, country, city, phone, email, workarea, description } = req.body;
 
     const user = await User.findById(req.user._id);
 
@@ -229,7 +229,8 @@ const updateFreelancer = async (req, res) => {
                 city,
                 phone,
                 email,
-                workarea
+                workarea,
+                description
             },
             {
                 new: true,
@@ -275,10 +276,18 @@ const getFreelancers = async (req, res) => {
 };
 
 const getFreelancer = async (req, res) => {
-    const freelancer = await User.findOne({
-        _id: req.params.id,
-        userrole: "freelancer"
-    }).select("-password -updatedAt -createdAt");
+    let freelancer;
+    try {
+        freelancer = await User.findOne({
+            _id: req.params.id,
+            userrole: "freelancer"
+        }).select("-password -updatedAt -createdAt");
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            message: "UserNotFound"
+        });
+    };
 
     if (!freelancer) {
         return res.status(404).json({ success: false });
