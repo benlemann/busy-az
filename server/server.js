@@ -29,12 +29,10 @@ app.use(cors({
 
 const { requestNotify } = require("./middlewares/notify")
 
-const adminRoute = require("./routes/adminRoute").router;
 const userRoute = require("./routes/userRoute").router;
 const checkRoute = require("./routes/checkRoute").router;
 const vacancyRoute = require("./routes/vacancyRoute").router;
 
-app.use("/api/admin", requestNotify, adminRoute);
 app.use("/api/user", requestNotify, userRoute);
 app.use("/api/check", requestNotify, checkRoute);
 app.use("/api/vacancy", requestNotify, vacancyRoute);

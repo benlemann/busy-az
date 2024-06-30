@@ -2,8 +2,7 @@ const { User } = require("../models/userModel");
 const { Vacancy } = require("../models/vacancyModel");
 const bcrypt = require("bcryptjs");
 const {
-    createTokenForLogin,
-    createTokenForLoginForAdmin
+    createTokenForLogin
 } = require("../token/createToken");
 
 const createUser = async (req, res) => {
@@ -82,12 +81,7 @@ const loginUser = async (req, res) => {
     };
 
     if (await bcrypt.compare(password, user.password)) {
-        let token;
-        if (user.userrole === "admin") {
-            token = await createTokenForLoginForAdmin(user._id);
-        } else {
-            token = await createTokenForLogin(user._id);
-        };
+        let token = await createTokenForLogin(user._id);
 
         res.cookie("jwt", token, {
             httpOnly: true
@@ -108,9 +102,6 @@ const loginUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const keys = ["name", "email", "phone", "currentpassword", "newpassword1", "newpassword2"];
-
-    console.log("body ::::::::", req.body);
-    console.log("user ::::::::", req.user);
 
     Object.keys(req.body).forEach(key => {
         if (!keys.includes(key)) {
