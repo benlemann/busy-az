@@ -1,11 +1,13 @@
 .card{
-    padding: 0 30px;
+    padding: 10px 30px;
     background-color: #fff;
-    height: 123px;
+    min-height: 123px;
     display: flex;
     gap: 20px;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .spn{
@@ -41,3 +43,6 @@
     color: rgb(128, 128, 128);
 }
 
+@media screen  and (min-width: 0)   and (max-width:800px){
+    
+}

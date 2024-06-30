@@ -23,7 +23,7 @@ const Login = () => {
 
         const data = await response.json();
         console.log(data.success);
-        return data.success,console.log("lfmelfm");;
+        return data.success, console.log("lfmelfm");;
     };
 
     useEffect(() => {
@@ -59,6 +59,7 @@ const Login = () => {
                 } else if (response.userrole === "employer") {
                     navigate('/dashboard/employer/profile');
                 }
+               
             } else {
                 // Genel hata mesajı ekleyin
                 actions.setErrors({ general: response.message });

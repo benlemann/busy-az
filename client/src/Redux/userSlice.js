@@ -20,9 +20,9 @@ export const getUsers = createAsyncThunk("users/getUsers", async () => {
   }
 });
 
-export const getDetailUser = createAsyncThunk("users/getDetailUser", async (id) => {
+export const getDetailUser = createAsyncThunk("users/getDetailUser", async (_id) => {
   try {
-    const response = await fetch(`http://localhost:7999/api/user/freelancer/${id}`);
+    const response = await fetch(`http://localhost:7999/api/user/freelancer/${_id}`);
     if (!response.ok) {
       throw new Error("Failed to fetch user details");
     }
@@ -33,15 +33,15 @@ export const getDetailUser = createAsyncThunk("users/getDetailUser", async (id) 
   }
 });
 
-export const deleteUser = createAsyncThunk("users/deleteUser", async (id) => {
+export const deleteUser = createAsyncThunk("users/deleteUser", async (_id) => {
   try {
-    const response = await fetch(`https://6676bd0c145714a1bd72a309.mockapi.io/users/${id}`, {
+    const response = await fetch(`https://6676bd0c145714a1bd72a309.mockapi.io/users/${_id}`, {
       method: "DELETE",
     });
     if (!response.ok) {
       throw new Error("Failed to delete user");
     }
-    return id;
+    return _id;
   } catch (error) {
     throw new Error("Failed to delete user");
   }
@@ -79,7 +79,7 @@ const userSlice = createSlice({
     });
     builder.addCase(deleteUser.fulfilled, (state, action) => {
       state.userStatus = "success";
-      state.users = state.users.filter((user) => user.id !== action.payload);
+      state.users = state.users.filter((user) => user._id !== action.payload);
     });
     builder.addCase(deleteUser.rejected, (state) => {
       state.userStatus = "fail";

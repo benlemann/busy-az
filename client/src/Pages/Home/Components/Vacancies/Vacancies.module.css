@@ -15,9 +15,12 @@
   border-radius: 4px;
   background-color: #fff;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+
 }
 
 .radioLabel {
+  
+  text-align: center;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -66,4 +69,17 @@
   background-color: #2A41E8;
   color: #fff;
   border-radius: 4px;
+}
+
+@media screen and (min-width:0) and (max-width:1000px) {
+  .radioinps{
+    width: 95%;
+  }
+}
+
+@media screen and (min-width:0) and (max-width:600px) {
+  .radioinps{
+    width: 95%;
+    flex-wrap: wrap;
+  }
 }

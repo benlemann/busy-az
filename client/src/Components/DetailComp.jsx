@@ -2,7 +2,6 @@ import useravatar from "../assets/useravatar.png"
 
 const DetailComp = ({ data, type }) => {
   const isJobDetail = type === 'job';
-  console.log(data, "xxxxxxxxxxxxxxx");
   return (
     <div>
       <div className="w-full h-32 flex items-center justify-center bg-slate-100">

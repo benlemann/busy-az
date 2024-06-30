@@ -1,6 +1,6 @@
 /* src/FAQ.module.css */
 .faq {
-    padding: 60px 0;
+    padding: 60px 10px;
     width: 100%;
     margin: 0 auto;
     text-align: left;
@@ -27,6 +27,7 @@
     text-align: center;
     font-size: 26px;
     font-weight: 500;
+    padding: 10px 0 20px 0;
 }
 
 .question{

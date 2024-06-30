@@ -46,7 +46,7 @@ const Vacancies = () => {
     }
 
     if (cityFilter !== "") {
-      filtered = filtered.filter((item) => item.location.includes(cityFilter));
+      filtered = filtered.filter((item) => item.location.toLowerCase().includes(cityFilter));
     }
 
     filtered = filtered.sort((a, b) =>
@@ -129,7 +129,7 @@ const Vacancies = () => {
                 <input
                   className="border p-1 rounded w-full lg:w-72"
                   placeholder="Şəhər adı yazın..."
-                  onChange={(e) => setCityFilter(e.target.value)}
+                  onChange={(e) => setCityFilter(e.target.value.toLowerCase())}
                   value={cityFilter}
                   type="text"
                 />

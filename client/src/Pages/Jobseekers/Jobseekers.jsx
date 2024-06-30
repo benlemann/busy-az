@@ -108,7 +108,7 @@ const Jobseekers = () => {
                 type="text"
               />
             </div>
-            <div className="mb-4 lg:mb-0">
+            <div className="mb-4 lg:mb-0 hidden">
               <h1 className="pb-6 font-semibold"> minimum yaş</h1>
               <input
                 className="border p-1 rounded w-full lg:w-40"
@@ -119,8 +119,8 @@ const Jobseekers = () => {
                 max="70"
               />
             </div>
-            <div>
-              <h1 className="pb-6 font-semibold"> maksimum yaş</h1>
+            <div className="hidden">
+              <h1 className="pb-6 font-semibold hidden"> maksimum yaş</h1>
               <input
                 className="border p-1 rounded w-full lg:w-40"
                 type="number"
